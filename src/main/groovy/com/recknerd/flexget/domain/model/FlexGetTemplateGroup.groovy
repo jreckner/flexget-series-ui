@@ -16,9 +16,6 @@ class FlexGetTemplateGroup {
     boolean verify_ssl_certificates
 
     @JsonProperty
-    String quality
-
-    @JsonProperty
     FlexGetSeries series
 
     @JsonProperty('exists_series')
