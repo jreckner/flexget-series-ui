@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 @Component
 @Slf4j
@@ -51,7 +52,7 @@ class FlexGetConfigDAO {
         if (!dst.exists() || overwrite) {
             log.info 'Creating backup ...'
             log.info "Overwrite: $overwrite, dst.exists(): ${dst.exists()}"
-            Files.copy(src.toPath(), dst.toPath())
+            Files.copy(src.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING)
         }
     }
 

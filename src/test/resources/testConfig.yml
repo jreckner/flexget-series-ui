@@ -1,0 +1,74 @@
+---
+templates:
+  global:
+    regexp:
+      reject:
+      - "ipod"
+    transmission:
+      host: "test.server.lan"
+      ratio: 0.01
+      addpaused: false
+      main_file_only: true
+      skip_files:
+      - "*.nfo"
+      - "*.txt"
+      include_subs: false
+    clean_transmission:
+      host: "localhost"
+      port: 9091
+      finished_for: "10 minutes"
+      min_ratio: 0.01
+      enabled: true
+    email:
+      from: "test@email.com"
+      smtp_host: "test.server.lan"
+      smtp_port: 587
+      template: "html-downloaded.template"
+      to:
+      - "user1@email.com"
+      - "user2@email.edu"
+  tv:
+    thetvdb_lookup: true
+    verify_ssl_certificates: true
+    series:
+      hdGroup:
+      - "Show 1"
+      - Show 2:
+          exact: true
+      - "Show 3"
+      - Show 4:
+          exact: true
+      - "Show 5"
+      - "Show 6"
+      - "Show 7"
+      stdGroup:
+      - "Show 8"
+      - Show 9:
+          quality: "sdtv+"
+      settings:
+        hdGroup:
+          timeframe: "20 hours"
+          propers: "24 hours"
+          target: "720p hdtv+"
+        stdGroup:
+          timeframe: "20 hours"
+          propers: "20 hours"
+          target: "<=720p"
+    exists_series:
+      allow_different_qualities: true
+      path: "/media/path/TV Shows/"
+    set:
+      path: "/media/path/TV Shows/%(series_name)s/Season %(series_season)d"
+tasks:
+  search:
+    template: "tv"
+    discover:
+      what:
+      - emit_series:
+          from_start: true
+      from:
+      - torrentz: "verified"
+      - kat:
+          category: "tv"
+          verified: true
+      interval: "1 day"
