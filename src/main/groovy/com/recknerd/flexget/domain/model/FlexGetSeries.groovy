@@ -22,12 +22,12 @@ class FlexGetSeries {
     List<FlexGetSeriesElement> hdGroup
 
     @Getter
-    getHdGroup() { return hdGroup ? hdGroup.sort { it.title } : [] }
+    getHdGroup() { return hdGroup ? hdGroup.sort { it.title } : (hdGroup = []) }
 
     @JsonProperty
     @JsonSerialize(contentUsing=TvShowSerializer)
     List<FlexGetSeriesElement> stdGroup
 
     @Getter
-    getStdGroup() { return stdGroup ? stdGroup.sort { it.title } : [] }
+    getStdGroup() { return stdGroup ? stdGroup.sort { it.title } : (stdGroup = []) }
 }

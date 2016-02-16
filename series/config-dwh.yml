@@ -31,21 +31,16 @@ templates:
     quality: null
     series:
       hdGroup:
-      - "American Horror Story"
-      - "Brooklyn Nine-Nine"
-      - "Fargo"
       - "Game of Thrones"
       - "It's Always Sunny in Philadelphia"
       - "Last Week Tonight"
-      - "New Girl"
-      - "Outlander"
       - "Rick and Morty"
+      - "Sherlock"
       - "The Blacklist"
-      - "The Expanse"
       - "The Flash"
-      - "The Late Show with Stephen Colbert"
       - "The Walking Dead"
-      stdGroup: []
+      stdGroup:
+      - "Archer"
       settings:
         hdGroup:
           target: "720p hdtv+"

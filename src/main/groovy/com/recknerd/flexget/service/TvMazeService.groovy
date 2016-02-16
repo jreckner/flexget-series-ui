@@ -22,25 +22,13 @@ class TvMazeService {
 
     static final String BASE_URI = 'http://api.tvmaze.com'
 
-    static final String SEARCH_URI = '/singlesearch/shows'
-
-    static final String SCHEDULE_URI = '/schedule'
+    static final String SEARCH_PATH = '/singlesearch/shows'
 
     TvMazeShowResponse search(String showTitle) {
         def queryParams = ['q': "$showTitle"]
-        def resp = tvMazeApi.get(path: SEARCH_URI, query: queryParams)
+        def resp = tvMazeApi.get(path: SEARCH_PATH, query: queryParams)
         return new ObjectMapper().readValue(new JSONObject(resp.data).toString(), TvMazeShowResponse)
     }
-
-    /*
-    def getSchedule() {
-        def now = new Date()
-        def queryParams = [country: 'US', date: "${(now + 1).format('YYYY-MM-dd')}"]
-        def resp = tvMazeApi.get(path: SCHEDULE_URI, query: queryParams)
-        // TODO: Create a Schedule Response with name, season and number. Then filter by S01E01
-        //return new ObjectMapper().readValue(new JSONObject(resp.data).toString(), TvMazeScheduleResponse)
-    }
-    */
 
     protected RESTClient getTvMazeApi() {
         def tvmazeApi = new RESTClient("$BASE_URI")

@@ -2,6 +2,8 @@ package com.recknerd.flexget.web
 
 import static org.springframework.web.bind.annotation.RequestMethod.*
 
+import com.recknerd.flexget.ex.ShowNotFoundException
+import com.recknerd.flexget.service.TheTvDbService
 import com.recknerd.flexget.domain.model.FlexGetSeriesElementSettings
 import com.recknerd.flexget.domain.web.TvShow
 import com.recknerd.flexget.domain.web.TvShowDetails
@@ -33,6 +35,9 @@ class SeriesController {
 
     @Autowired
     TvMazeService tvMazeShowSearchService
+
+    @Autowired
+    TheTvDbService theTvDbService
 
     @RequestMapping(method = GET)
     @ResponseStatus(HttpStatus.OK)
@@ -170,8 +175,14 @@ class SeriesController {
             log.error 'Invalid add show with settings Request {}'
             throw new SettingsDomainModelValidationException('Invalid add show to series request', bindingResult)
         }
-        def flexGetSeriesElement = seriesService.addShowToSeriesGroup(series, show, settings)
-        return flexGetSeriesElement.asTvShow()
+
+        // Validate our Show before adding it
+        def theTvDbResult = theTvDbService.search(show)
+        if (theTvDbResult?.series?.size()) {
+            def flexGetSeriesElement = seriesService.addShowToSeriesGroup(series, show, settings)
+            return flexGetSeriesElement.asTvShow()
+        }
+        throw new ShowNotFoundException()
     }
 
     @RequestMapping(value = '/{series}/{show}', method = DELETE)

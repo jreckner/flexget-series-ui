@@ -50,6 +50,9 @@ tvShowsApp.controller('ListHdTvShowsCtrl', function ($scope, growl, $http, TvSho
             $scope.$apply();
             $scope.tvshow.addTitle = null;
             TvShowDetailsService.addDetails(growl, 'hdGroup', item)
+        }).error(function (resp) {
+            $scope.tvshow.addTitle = null;
+            growl.addErrorMessage('<b>Error:</b>&nbsp;&nbsp;' + resp.message)
         });
     }
 
@@ -86,6 +89,9 @@ tvShowsApp.controller('ListStdTvShowsCtrl', function ($scope, growl, $http, TvSh
             $scope.$apply();
             $scope.tvshow.addTitle = null;
             TvShowDetailsService.addDetails(growl, 'stdGroup', item)
+        }).error(function (resp) {
+            $scope.tvshow.addTitle = null;
+            growl.addErrorMessage('<b>Error:</b>&nbsp;&nbsp;' + resp.message)
         });
     }
 
