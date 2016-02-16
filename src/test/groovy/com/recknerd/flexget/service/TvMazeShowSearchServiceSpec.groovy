@@ -8,7 +8,7 @@ import spock.lang.Specification
 @Slf4j
 class TvMazeShowSearchServiceSpec extends Specification {
 
-    def tvShowName = 'Sherlock'
+    def tvShowName = 'Star Wars Rebels'
 
     def 'get show from tvmaze.com api'() {
         setup:
@@ -20,6 +20,9 @@ class TvMazeShowSearchServiceSpec extends Specification {
 
         then:
         results.name == tvShowName
+        Double.parseDouble(results.rating.average) > 0
+        results._links.self['href']
+        results._links.nextepisode['href']
     }
 
 }

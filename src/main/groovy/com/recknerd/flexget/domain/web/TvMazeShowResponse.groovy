@@ -31,4 +31,7 @@ class TvMazeShowResponse {
 
     @JsonProperty
     TvMazeShowExternalsResponse externals
+
+    @JsonProperty
+    TvMazeShowLinksResponse _links
 }
