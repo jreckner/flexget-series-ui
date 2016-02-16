@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>FlexGet Series UI</title>
+        <link rel="stylesheet" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/bootstrap/themes/bootstrap-darkly.min.css" />
+        <link rel="stylesheet" href="webjars/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="webjars/ionicons/2.0.1/css/ionicons.min.css" />
+        <link rel="stylesheet" href="webjars/angular-growl/0.4.0/angular-growl.min.css" />
+        <link rel="stylesheet" href="css/tvshows.css" />
+        <script src="webjars/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+        <script src="webjars/jquery-ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+        <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular-touch.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular-sanitize.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular-route.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular-resource.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular-loader.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular-cookies.min.js" type="text/javascript"></script>
+        <script src="webjars/angularjs/1.2.29/angular-animate.min.js" type="text/javascript"></script>
+        <script src="webjars/angular-ui-bootstrap/1.1.1-1/ui-bootstrap.min.js"></script>
+        <script src="webjars/angular-ui-bootstrap/1.1.1-1/ui-bootstrap-tpls.min.js"></script>
+        <script src="webjars/angular-growl/0.4.0/angular-growl.min.js"></script>
+    </head>
+    <body ng-app="tvShowsApp" >
+        <div class="container-fluid">
+            <div class="row well">
+                <h2>FlexGet Series UI</h2>
+            </div>
+
+            <div class="row">
+                <div data-growl=""></div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-1 ">
+                </div>
+
+                <div class="col-md-5" ng-controller="ListHdTvShowsCtrl">
+                    <div class="panel-group" id="hdAccordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#hdAccordion" href="#collapseOne">
+                                        HD TV Shows
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-info clearfix">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" ng-click="addShow(tvshow.addTitle, tvshow.addExactTitle)">
+                                                        <span class="glyphicon glyphicon-plus-sign"></span> Add
+                                                    </button>
+                                                </span>
+                                                <input type="text" class="form-control" ng-model="tvshow.addTitle" />
+                                            </div>
+                                            <label class="pull-left"><input type="checkbox" value="false" ng-model="tvshow.addExactTitle" />Exact</label>
+                                        </li>
+                                        <li class="list-group-item list-group-item-info clearfix" ng-repeat="tvshow in hdtvshows | orderBy: 'title' ">
+                                            {{tvshow.title}}
+                                            <button type="button" class="pull-right btn btn-sm btn-danger" ng-click="deleteShow(tvshow)" ng-confirm-message="Are you sure?">
+                                                <span class="glyphicon glyphicon-remove"></span> Delete
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5" ng-controller="ListStdTvShowsCtrl">
+                    <div class="panel-group" id="stdAccordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#stdAccordion" href="#collapseTwo">Standard TV Shows</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item list-group-item-info clearfix">
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" ng-click="addShow(tvshow.addTitle, tvshow.addExactTitle)">
+                                                        <span class="glyphicon glyphicon-plus-sign"></span> Add
+                                                    </button>
+                                                </span>
+                                                <input type="text" class="form-control" ng-model="tvshow.addTitle" />
+                                            </div>
+                                            <label class="pull-left"><input type="checkbox" value="false" ng-model="tvshow.addExactTitle" />Exact</label>
+                                        </li>
+                                        <li class="list-group-item list-group-item-info clearfix" ng-repeat="tvshow in stdtvshows | orderBy: 'title' ">
+                                            {{tvshow.title}}
+                                            <button type="button" class="pull-right btn btn-sm btn-danger" ng-click="deleteShow(tvshow)">
+                                                <span class="glyphicon glyphicon-remove"></span> Delete
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-1 ">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div id="footer" class="well text-center">
+                    <p>
+                        &copy; 2016 recknerd.com
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <p>Designed by <a href="mailto:jon.reckner@gmail.com">jon.reckner@gmail.com</a>.</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/tvshows.js"></script>
+
+    </body>
+</html>
