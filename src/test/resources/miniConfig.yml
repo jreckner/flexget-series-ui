@@ -1,0 +1,25 @@
+templates:
+  global:
+    regexp:
+      reject:
+      - "ipod"
+  tv:
+    thetvdb_lookup: true
+    verify_ssl_certificates: true
+    series:
+      hdGroup:
+      - "Show 1"
+      - Show 2:
+          exact: true
+      - "Show 3"
+      - "Show 4"
+      stdGroup:
+      - "Show 5"
+      settings:
+        hdGroup:
+          target: "720p hdtv+"
+        stdGroup:
+          target: "<=720p"
+tasks:
+  search:
+    template: "tv"

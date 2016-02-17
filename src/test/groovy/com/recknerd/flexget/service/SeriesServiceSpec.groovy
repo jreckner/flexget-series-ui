@@ -10,10 +10,13 @@ import spock.lang.Specification
 @Slf4j
 class SeriesServiceSpec extends Specification {
 
+    static final String RESOURCES = './src/test/resources/'
+
     YAMLFactory yamlFactory = new YAMLFactory()
 
     def 'get show from series'() {
         setup:
+        def miniConfig = new File(RESOURCES + 'miniConfig.yml')
         FlexGetConfig mockFlexGetConfig = new ObjectMapper(yamlFactory).readValue(miniConfig, FlexGetConfig)
 
         def cut = new SeriesService()
@@ -31,6 +34,7 @@ class SeriesServiceSpec extends Specification {
 
     def 'add show to series'() {
         setup:
+        def miniConfig = new File(RESOURCES + 'miniConfig.yml')
         FlexGetConfig mockFlexGetConfig = new ObjectMapper(yamlFactory).readValue(miniConfig, FlexGetConfig)
 
         def cut = new SeriesService()
@@ -46,6 +50,7 @@ class SeriesServiceSpec extends Specification {
 
     def 'add show to series with settings'() {
         setup:
+        def miniConfig = new File(RESOURCES + 'miniConfig.yml')
         FlexGetConfig mockFlexGetConfig = new ObjectMapper(yamlFactory).readValue(miniConfig, FlexGetConfig)
 
         def cut = new SeriesService()
@@ -62,6 +67,7 @@ class SeriesServiceSpec extends Specification {
 
     def 'remove show from series'() {
         setup:
+        def miniConfig = new File(RESOURCES + 'miniConfig.yml')
         FlexGetConfig mockFlexGetConfig = new ObjectMapper(yamlFactory).readValue(miniConfig, FlexGetConfig)
 
         def cut = new SeriesService()
@@ -74,31 +80,4 @@ class SeriesServiceSpec extends Specification {
         mockFlexGetConfig.templates.template.series.hdGroup.size() == 3
     }
 
-    def miniConfig = '''
-templates:
-  global:
-    regexp:
-      reject:
-      - "ipod"
-  tv:
-    thetvdb_lookup: true
-    verify_ssl_certificates: true
-    series:
-      hdGroup:
-      - "Show 1"
-      - Show 2:
-          exact: true
-      - "Show 3"
-      - "Show 4"
-      stdGroup:
-      - "Show 5"
-      settings:
-        hdGroup:
-          target: "720p hdtv+"
-        stdGroup:
-          target: "<=720p"
-tasks:
-  search:
-    template: "tv"
-'''
 }

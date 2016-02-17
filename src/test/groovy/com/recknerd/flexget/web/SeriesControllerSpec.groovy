@@ -10,10 +10,13 @@ import spock.lang.Specification
 @Slf4j
 class SeriesControllerSpec extends Specification {
 
+    static final String RESOURCES = './src/test/resources/'
+
     YAMLFactory yamlFactory = new YAMLFactory()
 
     def 'getAllSeriesGroups'() {
         setup:
+        def miniConfig = new File(RESOURCES + 'miniConfig.yml')
         FlexGetConfig mockFlexGetConfig = new ObjectMapper(yamlFactory).readValue(miniConfig, FlexGetConfig)
 
         def cut = new SeriesController()
@@ -27,31 +30,4 @@ class SeriesControllerSpec extends Specification {
         assert actual.stdGroup.size() == 1
     }
 
-    def miniConfig = '''
-templates:
-  global:
-    regexp:
-      reject:
-      - "ipod"
-  tv:
-    thetvdb_lookup: true
-    verify_ssl_certificates: true
-    series:
-      hdGroup:
-      - "Show 1"
-      - Show 2:
-          exact: true
-      - "Show 3"
-      - "Show 4"
-      stdGroup:
-      - "Show 5"
-      settings:
-        hdGroup:
-          target: "720p hdtv+"
-        stdGroup:
-          target: "<=720p"
-tasks:
-  search:
-    template: "tv"
-'''
 }
