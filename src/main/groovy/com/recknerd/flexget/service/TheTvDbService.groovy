@@ -26,9 +26,13 @@ class TheTvDbService {
     static final String SEARCH_PATH = 'GetSeries.php'
 
     TheTvDbShowResponse search(String showTitle) {
+        log.info 'Searching TheTvDb for {}', showTitle
         def queryParams = ['seriesname': "$showTitle"]
         def resp = thetvdbapi.get(path: SEARCH_PATH, query: queryParams)
-        return new XmlMapper().readValue(XmlUtil.serialize(resp.data), TheTvDbShowResponse)
+        def respAsXml = XmlUtil.serialize(resp.data)
+        TheTvDbShowResponse showResponse = new XmlMapper().readValue(respAsXml, TheTvDbShowResponse)
+        log.debug 'TheTvDbShowResponse {}', showResponse
+        return showResponse
     }
 
     protected RESTClient getThetvdbapi() {

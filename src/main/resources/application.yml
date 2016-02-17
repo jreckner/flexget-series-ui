@@ -17,8 +17,8 @@ logging.file: flexget-series-ui.log
 logging.level.: WARN
 logging:
   level:
-    org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer: INFO
-    groovyx.net.http.RESTClient: DEBUG
+    # org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer: INFO
+    # groovyx.net.http.RESTClient: DEBUG
     com.recknerd.flexget: INFO
 
 # Application Network Settings

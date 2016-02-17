@@ -55,6 +55,7 @@ class SeriesController {
             @ApiResponse(code = 503, message = 'Server Unavailable')
     ])
     def getAllSeriesGroups() {
+        log.info 'Getting all shows in all series'
         def template = seriesService.allSeriesGroups
 
         List<TvShow> hdtvshows = []
@@ -90,6 +91,7 @@ class SeriesController {
     ])
     def getSeries(
             @PathVariable('series') String series ) {
+        log.info 'Getting all shows in {}', series
         def group = seriesService.getSeriesGroup(series)
 
         List<TvShow> tvshows = []
@@ -119,6 +121,7 @@ class SeriesController {
     def getShowFromSeries(
             @PathVariable('series') String series,
             @PathVariable('show') String show ) {
+        log.info 'Getting {}', show
         def flexGetSeriesElement = seriesService.getShowFromSeriesGroup(series, show)
         return flexGetSeriesElement.asTvShow()
     }
@@ -143,6 +146,7 @@ class SeriesController {
     def getShowFromSeriesWithDetails(
             @PathVariable('series') String series,
             @PathVariable('show') String show ) {
+        log.info 'Getting {} with details', show
         def flexGetSeriesElement = seriesService.getShowFromSeriesGroup(series, show)
         def tvShow = flexGetSeriesElement.asTvShow()
         def details = tvMazeShowSearchService.search(tvShow.title)
@@ -177,6 +181,7 @@ class SeriesController {
         }
 
         // Validate our Show before adding it
+        log.info 'Adding {}', show
         def theTvDbResult = theTvDbService.search(show)
         if (theTvDbResult?.series?.size()) {
             def flexGetSeriesElement = seriesService.addShowToSeriesGroup(series, show, settings)
@@ -201,7 +206,7 @@ class SeriesController {
     def removeShowFromSeries(
             @PathVariable('series') String series,
             @PathVariable('show') String show ) {
-        log.error("Deleting $show")
+        log.info 'Deleting {}', show
         seriesService.removeShowFromSeriesGroup(series, show)
         return []
     }

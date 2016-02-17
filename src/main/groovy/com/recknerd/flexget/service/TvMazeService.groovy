@@ -25,9 +25,13 @@ class TvMazeService {
     static final String SEARCH_PATH = '/singlesearch/shows'
 
     TvMazeShowResponse search(String showTitle) {
+        log.info 'Searching TheTvMaze for {}', showTitle
         def queryParams = ['q': "$showTitle"]
         def resp = tvMazeApi.get(path: SEARCH_PATH, query: queryParams)
-        return new ObjectMapper().readValue(new JSONObject(resp.data).toString(), TvMazeShowResponse)
+        def respAsJson = new JSONObject(resp.data).toString()
+        TvMazeShowResponse showResponse = new ObjectMapper().readValue(respAsJson, TvMazeShowResponse)
+        log.debug 'TheTvDbShowResponse {}', showResponse
+        return showResponse
     }
 
     protected RESTClient getTvMazeApi() {

@@ -39,6 +39,7 @@ class FlexGetConfigDAO {
     }
 
     def write() {
+        log.debug 'writing {}', flexGetConfiguration.config
         new File(flexGetConfiguration.config).withOutputStream { fos ->
             yamlFactory.createGenerator(fos).writeObject(flexGetConfig)
         }
