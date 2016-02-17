@@ -6,13 +6,13 @@ import groovy.util.logging.Slf4j
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Slf4j
-class FlexGetDeadEnd {
+class FlexGetImmutable {
 
     def data
 
     @JsonCreator
-    FlexGetDeadEnd(Map data) {
-        log.debug("deadend data: $data")
+    FlexGetImmutable(Map data) {
+        log.debug("immutable data: $data")
         this.data = data
     }
 }

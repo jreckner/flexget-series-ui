@@ -26,8 +26,8 @@ templates:
     transmission:
       host: "firefly.home.lan"
       ratio: 0.01
-      addpaused: no
-      main_file_only: yes
+      addpaused: false
+      main_file_only: true
       skip_files:
       - "*.nfo"
       - "*.sfv"
@@ -51,7 +51,6 @@ templates:
   tv:
     thetvdb_lookup: true
     verify_ssl_certificates: true
-    quality: null
     series:
       hdGroup:
       - "12 Monkeys"
@@ -68,7 +67,6 @@ templates:
       - "Grimm"
       - "Homeland"
       - "Into the Badlands"
-      - "Jessica Jones"
       - "LEGO Star Wars Droid Tales"
       - "Marvels Agent Carter"
       - "Marvels Agents of S.H.I.E.L.D."

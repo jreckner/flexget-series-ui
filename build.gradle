@@ -22,7 +22,7 @@ apply plugin: 'project-report'
 
 jar {
     baseName = 'flexget-series-ui'
-    version =  '1.0.3-SNAPSHOT'
+    version =  '1.0.4-SNAPSHOT'
 }
 
 repositories {

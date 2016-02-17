@@ -26,6 +26,16 @@ tvShowsApp.service('TvShowDetailsService', function($http, $q) {
     }
 });
 
+tvShowsApp.controller('BackupRestoreCtrl', function ($scope, growl, $http) {
+    $scope.backup = function() {
+        growl.addInfoMessage('<b>Not yet implemented:</b>&nbsp;&nbsp;')
+    }
+
+    $scope.restore = function() {
+        growl.addInfoMessage('<b>Not yet implemented:</b>&nbsp;&nbsp;')
+    }
+});
+
 tvShowsApp.controller('ListHdTvShowsCtrl', function ($scope, growl, $http, TvShowDetailsService) {
     $http.get('/api/series/hdGroup').success(function(data) {
       $scope.hdtvshows = data;

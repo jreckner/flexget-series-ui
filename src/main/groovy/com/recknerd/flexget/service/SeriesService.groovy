@@ -18,7 +18,6 @@ class SeriesService {
     FlexGetConfigDAO yamlManager
 
     FlexGetTemplateGroup getAllSeriesGroups() {
-        yamlManager.init()
         return yamlManager.flexGetConfig.templates.template
     }
 
@@ -58,7 +57,6 @@ class SeriesService {
     }
 
     private List<FlexGetSeriesElement> getSeriesByName(String seriesName) {
-        yamlManager.init()
         try {
              return yamlManager.flexGetConfig.templates.template.series[seriesName]
         }
