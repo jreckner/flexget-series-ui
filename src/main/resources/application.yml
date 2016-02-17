@@ -7,9 +7,11 @@ flexget:
 info:
   app:
     displayName: FlexGet Series UI
-    name: flexget-series-ui
-    description: FlexGet Config Series Editor
-    version: 1.0.5
+    name: ${name}
+    description: ${description}
+    version: ${version}
+    buildDate: ${buildDate}
+    commitsh: ${commitsh}
     platform: spring-boot-groovy-angularjs
 
 # Logging Configuration

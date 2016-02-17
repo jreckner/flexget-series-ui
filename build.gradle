@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 buildscript {
     repositories {
         mavenCentral()
@@ -20,9 +22,35 @@ apply plugin: 'codenarc'
 apply plugin: 'maven'
 apply plugin: 'project-report'
 
+archivesBaseName = 'sentry-mediation-service'
+group = 'com.recknerd.flexget'
+version = '1.0.5-SNAPSHOT'
+description = 'FlexGet Series Config Editor'
+
+bootRun {
+    /**
+     * Important: bootRun will not processResources unless addResources is set to false. See:
+     * http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/build-tool-plugins-gradle-plugin.html#build-tool-plugins-gradle-running-applications
+     */
+    addResources = false
+}
+
+processResources {
+    filesMatching("**/application.yml") {
+        expand([
+                name       : project.name,
+                version    : project.version,
+                description: project.description,
+                buildDate  : new SimpleDateFormat('yyyy-MM-dd_HH-mm-ss').format(new Date()),
+                commitsh   : ("git rev-parse HEAD".execute().text).trim()
+        ])
+    }
+}
+
+
 jar {
-    baseName = 'flexget-series-ui'
-    version =  '1.0.5-SNAPSHOT'
+    baseName = "${archivesBaseName}"
+    // version =  "${version}"
 }
 
 repositories {
@@ -33,13 +61,6 @@ compileJava {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 }
-
-/*
-configurations {
-    all*.exclude group: 'xml-apis'
-    all*.exclude group: 'xerces'
-}
-*/
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.5'
