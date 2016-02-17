@@ -9,7 +9,7 @@ info:
     displayName: FlexGet Series UI
     name: flexget-series-ui
     description: FlexGet Config Series Editor
-    version: 1.0.2
+    version: 1.0.5
     platform: spring-boot-groovy-angularjs
 
 # Logging Configuration
