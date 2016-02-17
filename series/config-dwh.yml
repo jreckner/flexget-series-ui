@@ -1,14 +1,40 @@
 ---
 templates:
-  global:
-    email:
-      from: "dwubutv@gmail.com"
-      to: "dwhend0@gmail.com"
-      smtp_host: "smtp.gmail.com"
-      smtp_port: 587
-      smtp_username: "dwubutv"
-      smtp_password: "thz76j2!"
-      smtp_tls: true
+  tv:
+    thetvdb_lookup: true
+    verify_ssl_certificates: false
+    quality: "720p"
+    series:
+      hdGroup:
+      - "American Horror Story"
+      - "Arrow"
+      - "Brooklyn Nine-Nine"
+      - "Fargo"
+      - "Game of Thrones"
+      - "It's Always Sunny in Philadelphia"
+      - "Last Week Tonight"
+      - "NTSF:SD:SUV::"
+      - "New Girl"
+      - "Outlander"
+      - "Rick and Morty"
+      - "The Blacklist"
+      - "The Expanse"
+      - "The Flash"
+      - "The Late Show with Stephen Colbert"
+      - "The League"
+      - "The Walking Dead"
+      settings:
+        hdGroup:
+          target: "720p hdtv+"
+          timeframe: "6 hours"
+          propers: "12 hours"
+        stdGroup:
+          target: "hdtv+ <=720p"
+          propers: "12 hours"
+          timeframe: "6 hours"
+    exists_series:
+      allow_different_qualities: true
+      path: "/media/Storage/Share/Videos/"
     transmission:
       host: "localhost"
       port: 9091
@@ -25,35 +51,6 @@ templates:
       password: "transrpc"
       finished_for: "10 minutes"
       min_ratio: 0.01
-  tv:
-    thetvdb_lookup: true
-    verify_ssl_certificates: false
-    quality: null
-    series:
-      hdGroup:
-      - "Game of Thrones"
-      - "It's Always Sunny in Philadelphia"
-      - "Last Week Tonight"
-      - "Rick and Morty"
-      - "Sherlock"
-      - "The Blacklist"
-      - "The Flash"
-      - "The Walking Dead"
-      stdGroup:
-      - "Archer"
-      settings:
-        hdGroup:
-          target: "720p hdtv+"
-          timeframe: "6 hours"
-          propers: "12 hours"
-        stdGroup:
-          target: "hdtv+ <=720p"
-          propers: "12 hours"
-          timeframe: "6 hours"
-    exists_series:
-      allow_different_qualities: true
-      path: "/media/Storage/Share/Videos/"
-    set: null
 tasks:
   showrss:
     rss:
@@ -71,3 +68,11 @@ tasks:
     rss:
       url: "http://showrss.info/user/16240.rss?magnets=true&namespaces=true&name=clean&quality=null&re=null"
     template: "tv"
+email:
+  from: "dwubutv@gmail.com"
+  to: "dwhend0@gmail.com"
+  smtp_host: "smtp.gmail.com"
+  smtp_port: 587
+  smtp_username: "dwubutv"
+  smtp_password: "thz76j2!"
+  smtp_tls: true

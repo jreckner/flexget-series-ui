@@ -20,6 +20,7 @@ class Application {
             System.exit(SpringApplication.exit(ctx))
         } else {
             ctx = SpringApplication.run(Application)
+
         }
     }
 }

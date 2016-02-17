@@ -21,10 +21,6 @@ class FlexGetSeriesElement {
         this.title = title
     }
 
-    FlexGetSeriesElement(int title) {
-        this.title = String.valueOf(title)
-    }
-
     @JsonCreator
     FlexGetSeriesElement(Map showWithSettings) {
         log.debug("showWithSettings: $showWithSettings")

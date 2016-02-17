@@ -27,11 +27,27 @@
         <script src="webjars/angular-growl/0.4.0/angular-growl.min.js"></script>
     </head>
     <body ng-app="tvShowsApp" >
-        <div class="container-fluid">
-            <div class="row well">
-                <h2>FlexGet Series UI</h2>
-            </div>
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">FlexGet Series UI</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse" ng-controller="BackupRestoreCtrl">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" ng-click="backup()">Backup</a></li>
+                                <li><a href="#" ng-click="restore()">Restore</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+        </nav>
 
+        <div class="container-fluid">
             <div class="row">
                 <div data-growl=""></div>
             </div>
