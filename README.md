@@ -1,13 +1,11 @@
 # flexget-series-ui
 
-### General Info 
-
 ### Continuous Integration Server
 http://recknerd.com/jenkins [![Build Status](https://recknerd.com/jenkins/job/flexget-series-ui+ci/badge/icon?style=plastic)](https://recknerd.com/jenkins/job/flexget-series-ui+ci)
 
 ![flexget-series-ui Welcome](https://github.com/jreckner/flexget-series-ui/raw/master/docs/FlexGetFullScreen.png)
 
-### FlexGet Config
+### FlexGet Config - Current Limitations
 At this point in time, this application only supports the following layout including required key names
 
 ```yml
