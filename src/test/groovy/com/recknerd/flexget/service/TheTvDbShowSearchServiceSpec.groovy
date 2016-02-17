@@ -21,8 +21,8 @@ class TheTvDbShowSearchServiceSpec extends Specification {
         results.series.each { log.debug("$it")}
 
         then:
-        assert results.series.size() == 8
-        assert results.series.find { it.seriesName == 'Sherlock'}
+        assert results.series.size() > 0 // 'Sherlock' currently returns multiple matches
+        assert results.series.find { it.seriesName == tvShowName}
     }
 
 }
