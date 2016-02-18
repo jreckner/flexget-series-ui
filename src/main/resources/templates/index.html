@@ -130,7 +130,7 @@
 
             </div>
 
-            <div class="row">
+            <div class="row" ng-controller="AppInfoCtrl">
                 <div id="footer" class="well text-center">
                     <p>
                         &copy; 2016 recknerd.com
@@ -138,6 +138,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
 
                         <p>Designed by <a href="mailto:jon.reckner@gmail.com">jon.reckner@gmail.com</a>.</p>
+                        <h6><p class="text-muted" ng-model="appVersion">{{appVersion}}</p></h6>
                     </p>
                 </div>
             </div>

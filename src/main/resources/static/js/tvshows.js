@@ -6,7 +6,7 @@ var tvShowsApp = angular.module('tvShowsApp', [
 ]);
 
 tvShowsApp.config(["growlProvider", "$httpProvider", function(growlProvider, $httpProvider) {
-    // growlProvider.globalTimeToLive(6000);
+    growlProvider.globalTimeToLive(30000);
     growlProvider.globalEnableHtml(true);
     growlProvider.onlyUniqueMessages(true);
 }]);
@@ -24,6 +24,12 @@ tvShowsApp.service('TvShowDetailsService', function($http, $q) {
             }
         });
     }
+});
+
+tvShowsApp.controller('AppInfoCtrl', function ($scope, growl, $http) {
+    $http.get('/info').success(function(data) {
+        $scope.appVersion = data.app.version
+    });
 });
 
 tvShowsApp.controller('BackupRestoreCtrl', function ($scope, growl, $http) {
