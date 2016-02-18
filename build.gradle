@@ -24,7 +24,7 @@ apply plugin: 'project-report'
 
 archivesBaseName = 'flexget-series-ui'
 group = 'com.recknerd.flexget'
-version = '1.0.7-SNAPSHOT'
+version = '1.0.8-SNAPSHOT'
 description = 'FlexGet Series Config Editor'
 
 bootRun {
